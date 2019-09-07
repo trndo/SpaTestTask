@@ -16,9 +16,12 @@ class SendMailable extends Mailable
      *
      * @return void
      */
-    public function __construct()
+
+    protected $data;
+
+    public function __construct($params)
     {
-        //
+        $this->data = $params;
     }
 
     /**

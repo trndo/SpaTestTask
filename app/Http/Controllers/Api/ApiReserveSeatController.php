@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ReservedSeatRequest;
 use App\Http\Services\ReservedSeatService\ReservedSeatInterface;
+use Illuminate\Http\Request;
 
 class ApiReserveSeatController extends Controller
 {
@@ -20,11 +21,12 @@ class ApiReserveSeatController extends Controller
         $this->reservedSeatService = $reservedSeatService;
     }
 
-    public function reserveSeat(ReservedSeatRequest $request)
+    public function reserveSeat(Request $request)
     {
-        dd($request->all());
        $result = $this->reservedSeatService->createReservation($request);
 
        return $result;
     }
+
+
 }

@@ -11,6 +11,7 @@ class ReservedSeat extends Model
         'customer_last_name',
         'phone_number',
         'reserved_at',
+        'file',
         'conference_room_id'
     ];
 

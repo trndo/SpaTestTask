@@ -13,8 +13,10 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/conferenceRooms','Api\ApiConferenceRoomController@getAllConferenceRooms');
+
 Route::post('/seats','Api\ApiReserveSeatController@reserveSeat');
+Route::get('/conferenceRooms','Api\ApiConferenceRoomController@getAllConferenceRooms');
+
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

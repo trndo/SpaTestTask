@@ -6,10 +6,11 @@ namespace App\Http\Services\ReservedSeatService;
 
 use App\Http\Repositories\RepositoryInterfaces\RepositoryInterface;
 use App\Http\Services\UploadingFileService\UploadingFileInterface;
+use App\Mail\MailNewReservation;
 use App\Models\ConferenceRoom;
 use App\Models\ReservedSeat;
-use http\Exception\InvalidArgumentException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ReservedSeatsService implements ReservedSeatInterface
 {
@@ -56,6 +57,8 @@ class ReservedSeatsService implements ReservedSeatInterface
         $attributes['file'] = $newFileName;
 
         $this->repository->create($attributes);
+
+        Mail::to('admin@gmail.com')->send(new MailNewReservation([]));
 
         return [
             'status' => true,

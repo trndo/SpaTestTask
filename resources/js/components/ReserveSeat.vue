@@ -15,9 +15,9 @@
                 <div>
                     <input type="text" v-model="phone_number">
                 </div>
-<!--                <div>-->
-<!--                    <input type="file" v-on:change="imageUpload" ref="file">-->
-<!--                </div>-->
+                <div>
+                    <input type="file" v-on:change="imageUpload" ref="file">
+                </div>
                 <div>
                     <button>Reserve</button>
                 </div>
@@ -40,15 +40,14 @@
                 customer_last_name: null,
                 reserved_at: null,
                 phone_number: null,
-                // file: null,
+                file: null,
                 error: null
             }
         },
         methods: {
-            // imageUpload() {
-            //     this.file = this.$refs.file.files[0];
-            //     console.log(this.file);
-            // },
+            imageUpload() {
+                this.file = this.$refs.file.files[0];
+            },
 
             submit() {
 
@@ -60,7 +59,6 @@
 
                 let data = this.gatherFormData();
 
-                console.log(data);
                 axios
                     .post('/api/seats', data, config)
                     .then(response => {
@@ -74,19 +72,11 @@
                 let formData = new FormData();
 
                 formData.append('customer_name', this.customer_name);
-                console.log(formData);
                 formData.append('customer_last_name', this.customer_last_name);
                 formData.append('reservedAt', this.reserved_at);
                 formData.append('phone_number', this.reserved_at);
-                // formData.append('file', this.file);
+                formData.append('file', this.file);
                 formData.append('conference_room_id', this.conference_room_id);
-                console.log(
-                    formData.get('customer_last_name'),
-                    formData.get('customer_name'),
-                    formData.get('reservedAt'),
-                    formData.get('phone_number'),
-                    formData.get('file'),
-                    formData.get('conference_room_id'));
 
                 return formData;
             }

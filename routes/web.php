@@ -12,6 +12,7 @@
 */
 
 
+
 Route::group(['prefix' => '/admin/rooms','middleware' => 'admin'],function () {
     Route::get('/','Admin\ConferenceRoomController@getAll')->name('rooms.all');
     Route::post('store','Admin\ConferenceRoomController@store')->name('rooms.store');
@@ -22,8 +23,10 @@ Route::group(['prefix' => '/admin/rooms','middleware' => 'admin'],function () {
     Route::get('{id}','Admin\ConferenceRoomController@read')->name('rooms.show');
 });
 
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/{any}','SpaController@index')->where('any','.*');
+

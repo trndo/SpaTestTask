@@ -1913,15 +1913,14 @@ __webpack_require__.r(__webpack_exports__);
       customer_last_name: null,
       reserved_at: null,
       phone_number: null,
-      // file: null,
+      file: null,
       error: null
     };
   },
   methods: {
-    // imageUpload() {
-    //     this.file = this.$refs.file.files[0];
-    //     console.log(this.file);
-    // },
+    imageUpload: function imageUpload() {
+      this.file = this.$refs.file.files[0];
+    },
     submit: function submit() {
       var config = {
         headers: {
@@ -1929,7 +1928,6 @@ __webpack_require__.r(__webpack_exports__);
         }
       };
       var data = this.gatherFormData();
-      console.log(data);
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/seats', data, config).then(function (response) {
         console.log(response);
       })["catch"](function (error) {
@@ -1939,13 +1937,11 @@ __webpack_require__.r(__webpack_exports__);
     gatherFormData: function gatherFormData() {
       var formData = new FormData();
       formData.append('customer_name', this.customer_name);
-      console.log(formData);
       formData.append('customer_last_name', this.customer_last_name);
       formData.append('reservedAt', this.reserved_at);
-      formData.append('phone_number', this.reserved_at); // formData.append('file', this.file);
-
+      formData.append('phone_number', this.reserved_at);
+      formData.append('file', this.file);
       formData.append('conference_room_id', this.conference_room_id);
-      console.log(formData.get('customer_last_name'), formData.get('customer_name'), formData.get('reservedAt'), formData.get('phone_number'), formData.get('file'), formData.get('conference_room_id'));
       return formData;
     }
   }
@@ -38137,6 +38133,14 @@ var render = function() {
                   _vm.phone_number = $event.target.value
                 }
               }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", [
+            _c("input", {
+              ref: "file",
+              attrs: { type: "file" },
+              on: { change: _vm.imageUpload }
             })
           ]),
           _vm._v(" "),
